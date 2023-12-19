@@ -1,0 +1,27 @@
+*{
+
+
+    box-sizing: border-box;
+    margin: 0;
+
+}
+
+.game-container{
+
+}
+
+.background{
+background-image: url(images/bg.jpg);
+background-position: center;
+background-size: cover;
+height: 100dvh;
+width: 100dvw;
+position: absolute;
+}
+
+.bird{
+background-color: yellow;
+height: 20px;
+width: 20px;
+position: absolute;
+}
