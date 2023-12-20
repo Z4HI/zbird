@@ -7,21 +7,38 @@
 }
 
 .game-container{
-
+    background-image: url(images/bg.jpg);
+    background-position: center;
+    background-size: cover   ;
+    height: 100vh;
+    width: 300px;
+    position: relative;
+    overflow: hidden;
 }
 
-.background{
-background-image: url(images/bg.jpg);
-background-position: center;
-background-size: cover;
-height: 100dvh;
-width: 100dvw;
-position: absolute;
-}
+
 
 .bird{
 background-color: yellow;
 height: 20px;
 width: 20px;
 position: absolute;
+}
+
+.topPole{
+    background-color: gray;
+    width: 50px;
+    height: 300px;
+    position: absolute;
+    
+}
+
+.bottomPole{
+    background-color: green;
+    width: 50px;
+    height: 300px;
+    position: absolute;
+    transform-origin: bottom;
+    transform: rotate(180deg);
+
 }

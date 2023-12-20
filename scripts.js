@@ -6,7 +6,13 @@ const bird = document.querySelector('.bird')
 let birdLeft = 100;
 let birdBottom = 200;
 let gravity = 2;
-let height = screen.height;
+let height = window.innerHeight -50;
+let isGameOver = false; 
+let poleHeight = 200
+
+
+//startgame
+//bottom position changes -2px every 20 milliseconds
 
 
 function startGame(){
@@ -15,17 +21,92 @@ function startGame(){
     birdBottom -= gravity
     bird.style.left = birdLeft + 'px'
     bird.style.bottom = birdBottom + 'px'
-}
+}    
 
-let timerID = setInterval(startGame,20)
+let gametimerID = setInterval(startGame,20)
 
+//jump +100px from bottom position
 function jump(){
-    if(birdBottom < height-200){ 
+    if(birdBottom < height){ 
     birdBottom += 50
     bird.style.bottom = birdBottom + 'px'}
 }
 
-document.addEventListener('keyup', jump)
+//KeyCode 32 allows only spacebar to activate jump function
+function control(e){
+if (e.keyCode ===32){
+    jump()
+}
+}
+
+// jump if spacebar, or click
+document.addEventListener('keyup', control)
 document.addEventListener('click', jump)
 
-console.log(height)
+//create poles
+
+function generateObstacle(){
+    let poleLeft = 300
+    let randomHeight = Math.random() * poleHeight + 200
+    obstacleHeight = randomHeight
+    
+    const topPole = document.createElement('div')
+    const bottomPole = document.createElement('div')
+
+    if(!isGameOver){
+        topPole.classList.add('topPole')
+        bottomPole.classList.add('bottomPole')
+        display.appendChild(topPole)
+        display.appendChild(bottomPole)
+    }
+    
+    
+    topPole.style.left = poleLeft + 'px'
+    bottomPole.style.left = poleLeft + 'px'
+    topPole.style.height = obstacleHeight + 'px'
+    bottomPole.style.height =  obstacleHeight + 100 +'px'
+
+
+    
+    // move pole left, generate poles every 3 seconds
+    function moveObstacle(){
+        poleLeft -=2
+        poleBottom = window.innerHeight - obstacleHeight 
+        topPole.style.left = poleLeft + 'px'
+        bottomPole.style.left = poleLeft + 'px'
+
+        if (poleLeft === -50){
+            clearInterval(timerID)
+            display.removeChild(topPole)
+            display.removeChild(bottomPole)
+        }
+
+        if(poleLeft >= 70 && poleLeft<=120 && birdLeft ===100  
+            && (birdBottom + 20 > poleBottom||birdBottom < poleBottom - 100)  
+            
+            ||birdBottom === 0){
+            gameOver()
+            
+        }
+    }
+
+    let timerID = setInterval(moveObstacle,20)
+    if(!isGameOver)setTimeout(generateObstacle,3000)
+
+
+    function gameOver(){
+        console.log('game over')
+        clearInterval(gametimerID)
+        clearInterval(timerID)
+        isGameOver = true
+        document.removeEventListener('keyup', control)
+        document.removeEventListener('click', jump)
+       
+    }
+}
+
+
+generateObstacle()
+
+
+
