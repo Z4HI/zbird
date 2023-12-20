@@ -64,7 +64,7 @@ function generateObstacle(){
     topPole.style.left = poleLeft + 'px'
     bottomPole.style.left = poleLeft + 'px'
     topPole.style.height = obstacleHeight + 'px'
-    bottomPole.style.height =  obstacleHeight + 100 +'px'
+    bottomPole.style.height =  obstacleHeight + 150 +'px'
 
 
     
@@ -81,8 +81,8 @@ function generateObstacle(){
             display.removeChild(bottomPole)
         }
 
-        if(poleLeft >= 70 && poleLeft<=120 && birdLeft ===100  
-            && (birdBottom + 20 > poleBottom||birdBottom < poleBottom - 100)  
+        if(poleLeft >= 70 && poleLeft<=130 && birdLeft ===100  
+            && (birdBottom + 45 > poleBottom||birdBottom < poleBottom - 130)  
             
             ||birdBottom === 0){
             gameOver()
