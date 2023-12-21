@@ -8,7 +8,7 @@ let birdBottom = 200;
 let gravity = 2;
 let height = window.innerHeight -50;
 let isGameOver = false; 
-let poleHeight = 200
+let poleHeight = 300
 
 
 //startgame
@@ -46,7 +46,7 @@ document.addEventListener('click', jump)
 //create poles
 
 function generateObstacle(){
-    let poleLeft = 300
+    let poleLeft = 400
     let randomHeight = Math.random() * poleHeight + 200
     obstacleHeight = randomHeight
     
@@ -81,17 +81,17 @@ function generateObstacle(){
             display.removeChild(bottomPole)
         }
 
-        if(poleLeft >= 70 && poleLeft<=130 && birdLeft ===100  
+        if(poleLeft >= 70 && poleLeft<130 && birdLeft ===100  
             && (birdBottom + 45 > poleBottom||birdBottom < poleBottom - 130)  
             
-            ||birdBottom === 0){
+            ||birdBottom === 20){
             gameOver()
             
         }
     }
 
     let timerID = setInterval(moveObstacle,20)
-    if(!isGameOver)setTimeout(generateObstacle,3000)
+    if(!isGameOver)setTimeout(generateObstacle,3400)
 
 
     function gameOver(){
